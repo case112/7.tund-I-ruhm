@@ -2,6 +2,11 @@
 	
 	require("functions.php");
 	
+	require("Car.class.php");
+	$Cars = new Cars($mysqli);
+	
+	
+	
 	//kui ei ole kasutaja id'd
 	if (!isset($_SESSION["userId"])){
 		
@@ -34,12 +39,12 @@
 		!empty($_POST["color"])
 	  ) {
 		  
-		saveCar(cleanInput($_POST["plate"]), cleanInput($_POST["color"]));
+		$Cars->saveCar($Helper->cleanInput($_POST["plate"]), $Helper->cleanInput($_POST["color"]));
 		
 	}
 	
 	//saan kõik auto andmed
-	$carData = getAllCars();
+	$carData = $Cars->getAllCars();
 	//echo "<pre>";
 	//var_dump($carData);
 	//echo "</pre>";
